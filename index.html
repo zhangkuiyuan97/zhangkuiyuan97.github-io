@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>你的名字 | 个人主页</title>
+  <meta name="description" content="这是一个适用于 GitHub Pages 的单文件个人网站模板，包含简介、项目、博客与联系信息。" />
+  <meta name="color-scheme" content="light dark">
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="你的名字 | 个人主页" />
+  <meta property="og:description" content="一个简洁、响应式、支持深色模式的 GitHub Pages 模板。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/0?v=4" />
+  <meta property="og:url" content="https://your-username.github.io/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌐</text></svg>">
+
+  <style>
+    :root {
+      --bg: #0b0c0f;
+      --bg-elev: #12141a;
+      --text: #e8ebf0;
+      --muted: #a8b0bd;
+      --brand: #6ea8fe;
+      --card: #151822;
+      --border: #262b36;
+      --shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --bg-elev: #f6f7f9;
+        --text: #14161a;
+        --muted: #5a6577;
+        --brand: #2563eb;
+        --card: #ffffff;
+        --border: #e5e7eb;
+        --shadow: 0 8px 20px rgba(0,0,0,.08);
+      }
+    }
+    [data-theme="light"]{
+      --bg: #ffffff;
+      --bg-elev: #f6f7f9;
+      --text: #14161a;
+      --muted: #5a6577;
+      --brand: #2563eb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 8px 20px rgba(0,0,0,.08);
+    }
+    [data-theme="dark"]{
+      --bg: #0b0c0f;
+      --bg-elev: #12141a;
+      --text: #e8ebf0;
+      --muted: #a8b0bd;
+      --brand: #6ea8fe;
+      --card: #151822;
+      --border: #262b36;
+      --shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif; 
+      color: var(--text); background: radial-gradient(1200px 800px at 70% -10%, rgba(99,102,241,.15), transparent 60%), var(--bg);
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { width: min(1100px, 92vw); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid var(--border); z-index: 10;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand .logo { width: 28px; height: 28px; border-radius: 10px; display: grid; place-items: center; background: var(--bg-elev); border: 1px solid var(--border); }
+    .nav a { margin-left: 18px; color: var(--text); opacity: .9; }
+    .nav a:hover { opacity: 1; }
+
+    .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; padding: 56px 0 28px; align-items: center; }
+    .hero h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.15; margin: 0 0 10px; }
+    .hero p.lead { font-size: clamp(16px, 1.6vw, 20px); color: var(--muted); margin: 0 0 18px; }
+    .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 12px; padding: 10px 14px; box-shadow: var(--shadow); }
+    .btn.primary { background: linear-gradient(180deg, color-mix(in oklab, var(--brand) 85%, white 15%), color-mix(in oklab, var(--brand) 80%, black 20%)); color: #fff; border: none; }
+    .btn:hover { transform: translateY(-1px); }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: var(--shadow); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-8 { grid-column: span 8; }
+    .col-12 { grid-column: span 12; }
+
+    section { padding: 44px 0; }
+    section h2 { font-size: 24px; margin: 0 0 16px; }
+    .muted { color: var(--muted); }
+
+    .project { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .project h3 { margin: 0; font-size: 18px; }
+    .project p { margin: 0; }
+    .tags { display:flex; gap:8px; flex-wrap: wrap; }
+    .tag { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-elev); }
+
+    .blog-list { display: grid; gap: 12px; }
+    .blog-item { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 12px 0; border-bottom: 1px dashed var(--border); }
+    .blog-item:last-child { border-bottom: none; }
+    .blog-item time { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+    footer { padding: 40px 0; border-top: 1px solid var(--border); color: var(--muted); }
+
+    .kpis { display:flex; gap: 18px; flex-wrap: wrap; }
+    .kpi { flex: 1 1 160px; text-align: center; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-elev); }
+    .kpi .val { font-size: 22px; font-weight: 700; }
+
+    .toc { display:flex; gap:8px; flex-wrap: wrap; }
+    .toc a { padding: 6px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-elev); }
+
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .col-4, .col-6, .col-8, .col-12 { grid-column: span 12; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">✨</div>
+        <a href="#top" class="home" aria-label="回到顶部">你的名字</a>
+      </div>
+      <nav class="toc" aria-label="主导航">
+        <a href="#about">关于</a>
+        <a href="#projects">项目</a>
+        <a href="#research">研究/出版</a>
+        <a href="#blog">博客</a>
+        <a href="#contact">联系</a>
+        <button id="themeToggle" class="btn" style="margin-left:8px" aria-label="切换主题">🌓 主题</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div>
+        <h1>你好，我是<span style="white-space:nowrap">你的名字</span> 👋</h1>
+        <p class="lead">一句话介绍自己：例如 “专注于多机器人定位、UWB 融合与优化算法的博士生”。</p>
+        <div class="kpis">
+          <div class="kpi"><div class="val" id="kpiYears">5+</div><div class="muted">年经验</div></div>
+          <div class="kpi"><div class="val">10+</div><div class="muted">开源贡献</div></div>
+          <div class="kpi"><div class="val">3</div><div class="muted">正在进行的项目</div></div>
+        </div>
+        <div class="cta" style="margin-top:14px">
+          <a class="btn primary" href="#projects">查看项目</a>
+          <a class="btn" href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="CV.pdf" target="_blank" rel="noopener">下载简历</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0">快速导航</h2>
+        <p class="muted" style="margin-top:-6px">你也可以从这里开始：</p>
+        <div class="grid">
+          <a class="btn col-6" href="#research">🔬 我的研究</a>
+          <a class="btn col-6" href="#blog">✍️ 最新博客</a>
+          <a class="btn col-12" href="#contact">📮 联系我</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>关于我</h2>
+      <div class="grid">
+        <div class="col-8 card">
+          <p>在这里写一段 3-5 句简介。建议包含你的研究/工作方向、技术栈、正在做的事与求职/合作意向。例如：我目前在 <strong>Ghent University</strong> 访问学习，研究方向为 <em>多机器人定位、UWB/IMU/LiDAR 融合、滑窗优化</em> 等。热爱开源与可复现研究。</p>
+          <div class="tags" aria-label="技术标签">
+            <span class="tag">C++</span>
+            <span class="tag">Python</span>
+            <span class="tag">ROS</span>
+            <span class="tag">Ceres Solver</span>
+            <span class="tag">EKF / Factor Graph</span>
+          </div>
+        </div>
+        <aside class="col-4 card">
+          <h3 style="margin-top:0">联系方式</h3>
+          <p class="muted">你可以在任一渠道找到我：</p>
+          <ul>
+            <li>📧 邮箱：<a href="mailto:your.name@email.com">your.name@email.com</a></li>
+            <li>🐙 GitHub：<a href="https://github.com/your-username" target="_blank" rel="noopener">@your-username</a></li>
+            <li>💼 LinkedIn：<a href="https://linkedin.com/in/your-id" target="_blank" rel="noopener">/in/your-id</a></li>
+            <li>🐦 X(Twitter)：<a href="https://x.com/your-id" target="_blank" rel="noopener">@your-id</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>精选项目</h2>
+      <div class="grid">
+        <article class="col-6 card project">
+          <h3>边缘计算框架</h3>
+          <p class="muted"></p>
+          <div class="tags"><span class="tag">Optimization</span><span class="tag">SLAM</span><span class="tag">UWB</span></div>
+          <p>
+            <a href="https://github.com/your-username/uwb-multi-robot" target="_blank" rel="noopener">源代码</a> ·
+            <a href="#" target="_blank" rel="noopener">文档</a> ·
+            <a href="#" target="_blank" rel="noopener">演示视频</a>
+          </p>
+        </article>
+        <article class="col-6 card project">
+          <h3>多传感器融合</h3>
+          <p class="muted"></p>
+          <div class="tags"><span class="tag">Networking</span><span class="tag">C++</span><span class="tag">Concurrency</span></div>
+          <p>
+            <a href="https://github.com/your-username/r3live-multi-client" target="_blank" rel="noopener">源代码</a>
+          </p>
+        </article>
+        <article class="col-6 card project">
+          <h3>无线感知</h3>
+          <p class="muted"></p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">ThreadPool</span><span class="tag">Scheduling</span></div>
+          <p>
+            <a href="https://github.com/your-username/priority-threadpool" target="_blank" rel="noopener">源代码</a>
+          </p>
+        </article>
+        <article class="col-6 card project">
+          <h3>更多项目…</h3>
+          <p class="muted">把你的其他项目也放上来，或链接到 GitHub 仓库列表。</p>
+          <div class="tags"><span class="tag">Open Source</span><span class="tag">Portfolio</span></div>
+          <p>
+            <a href="https://github.com/your-username?tab=repositories" target="_blank" rel="noopener">查看所有仓库</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="research">
+      <h2>研究 / 出版</h2>
+      <div class="card">
+        <ul>
+          <li><strong>Paper A</strong> — 作者1, 作者2, <em>期刊/会议</em>, 2025. <a href="#" target="_blank" rel="noopener">PDF</a> · <a href="#" target="_blank" rel="noopener">代码</a></li>
+          <li><strong>Paper B</strong> — 作者1, 作者2, <em>期刊/会议</em>, 2024. <a href="#" target="_blank" rel="noopener">PDF</a> · <a href="#" target="_blank" rel="noopener">代码</a></li>
+          <li><strong>专利 / 技术报告</strong> — 简介与链接…</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="blog">
+      <h2>最新博客</h2>
+      <div class="card blog-list">
+        <div class="blog-item">
+          <a href="#" target="_blank" rel="noopener">在 MATLAB 中实现滑窗图优化：从 EKF 到 Factor Graph</a>
+          <time datetime="2025-05-04">2025-05-04</time>
+        </div>
+        <div class="blog-item">
+          <a href="#" target="_blank" rel="noopener">多机器人 UWB 相对测距的建图与约束建模</a>
+          <time datetime="2025-05-03">2025-05-03</time>
+        </div>
+        <div class="blog-item">
+          <a href="#" target="_blank" rel="noopener">R3LIVE 多客户端接入的性能调优笔记</a>
+          <time datetime="2025-05-08">2025-05-08</time>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>联系我</h2>
+      <div class="grid">
+        <form class="col-8 card" id="contactForm">
+          <label>你的邮箱
+            <input required type="email" name="email" placeholder="you@example.com" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text);margin-top:6px">
+          </label>
+          <label>留言
+            <textarea required name="message" rows="5" placeholder="想和我合作？给我留言吧。" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text);margin-top:6px"></textarea>
+          </label>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="btn primary" type="submit">发送邮件</button>
+            <span class="muted" id="formHint">将通过 <code>mailto:</code> 打开你的本地邮箱</span>
+          </div>
+        </form>
+        <div class="col-4 card">
+          <h3 style="margin-top:0">更多方式</h3>
+          <p class="muted">也可以直接给我发邮件，或在社交平台私信我。</p>
+          <p>📬 <a href="mailto:your.name@email.com">your.name@email.com</a></p>
+          <p>📄 <a href="CV.pdf" target="_blank" rel="noopener">查看/下载我的简历</a></p>
+          <p>📍 Belgium / China</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>常见问题</h2>
+      <div class="grid">
+        <details class="col-6 card"><summary><strong>这个网站如何部署到 GitHub Pages？</strong></summary>
+          <ol>
+            <li>在 GitHub 新建仓库：<code>your-username.github.io</code>（用户主页）或任意名称（项目页）。</li>
+            <li>把本文件命名为 <code>index.html</code> 并提交推送到 <code>main</code> 分支根目录。</li>
+            <li>打开仓库 Settings → Pages，选择部署分支为 <code>main</code> / <code>root</code>。</li>
+            <li>几分钟后访问：<code>https://your-username.github.io/</code> 或 <code>https://your-username.github.io/仓库名/</code>。</li>
+          </ol>
+        </details>
+        <details class="col-6 card"><summary><strong>怎么自定义深色/浅色主题？</strong></summary>
+          <p>点击右上角“主题”，或在代码顶部的 <code>:root</code> / <code>[data-theme]</code> 中调整变量即可。</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <span>© <span id="year"></span> 你的名字. 保留所有权利。</span>
+        <div style="display:flex;gap:12px;align-items:center">
+          <a href="/sitemap.xml">站点地图</a>
+          <a href="/rss.xml">RSS</a>
+          <a href="#top" aria-label="回到顶部">⬆️ 顶部</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 年份 & 体验年数示例（可改）
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    const kpiYears = document.getElementById('kpiYears');
+    if (kpiYears) {
+      const start = 2020; // 你的起始年份
+      const years = Math.max(1, new Date().getFullYear() - start);
+      kpiYears.textContent = years + "+";
+    }
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', id);
+        }
+      })
+    });
+
+    // 主题切换：localStorage + 媒体查询
+    const btn = document.getElementById('themeToggle');
+    const preferred = localStorage.getItem('theme');
+    if (preferred) document.documentElement.setAttribute('data-theme', preferred);
+    btn?.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme');
+      const next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // 简易 mailto 表单
+    const form = document.getElementById('contactForm');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const email = fd.get('email');
+      const message = fd.get('message');
+      const subject = encodeURIComponent('来自网站的留言');
+      const body = encodeURIComponent(`From: ${email}\n\n${message}`);
+      window.location.href = `mailto:your.name@email.com?subject=${subject}&body=${body}`;
+    });
+
+    // 可选：启用简单的页面浏览统计（替换为你的脚本或 Plausible/GA）
+    // (function(){ /* analytics */ })();
+  </script>
+</body>
+</html>
